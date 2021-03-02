@@ -1,0 +1,14 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: StorageBucketAllowedLocations
+metadata:
+  name: allowmultiregions
+spec:
+  match:
+    kinds:
+      - apiGroups: ["storage.cnrm.cloud.google.com"]
+        kinds: ["StorageBucket"]
+  parameters:
+    locations:
+      - "ASIA"
+      - "EU"
+      - "US"

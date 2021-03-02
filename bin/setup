@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# Retrieve an store the current project id.
+PROJECT_ID=$(gcloud config get-value project)
+
+# Create a GKE cluster named cad with the ConfigConnector addon enabled.
+gcloud container clusters create cad \
+  --release-channel regular \
+  --addons ConfigConnector \
+  --workload-pool="${PROJECT_ID}.svc.id.goog" \
+  --enable-stackdriver-kubernetes \
+  --zone us-west1-a
+
+# Create an IAM service to be used by Config Connector to create GCP resources. 
+gcloud iam service-accounts create config-connector
+
+# Grant project owner permissions to the 'config-connector' IAM service
+# account.
+gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+  --member="serviceAccount:config-connector@${PROJECT_ID}.iam.gserviceaccount.com" \
+  --role="roles/owner"
+
+# Bind the config-connector IAM service account to the Config Connector controller-manager
+# service.
+gcloud iam service-accounts add-iam-policy-binding \
+  "config-connector@${PROJECT_ID}.iam.gserviceaccount.com" \
+  --member="serviceAccount:${PROJECT_ID}.svc.id.goog[cnrm-system/cnrm-controller-manager]" \
+  --role="roles/iam.workloadIdentityUser"
+
+# Add the 'cnrm.cloud.google.com/project-id' annotation to the default
+# namespace.
+kubectl annotate namespace default \
+  "cnrm.cloud.google.com/project-id=${PROJECT_ID}"
+
+cat << EOF > configconnector.yaml
+apiVersion: core.cnrm.cloud.google.com/v1beta1
+kind: ConfigConnector
+metadata:
+  name: configconnector.core.cnrm.cloud.google.com
+spec:
+ mode: cluster
+ googleServiceAccount: "config-connector@${PROJECT_ID}.iam.gserviceaccount.com"
+EOF
+
+kubectl apply -f configconnector.yaml

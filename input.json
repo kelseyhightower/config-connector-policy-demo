@@ -1,0 +1,164 @@
+{
+  "parameters": {
+    "locations": [
+      "ASIA",
+      "EU",
+      "US",
+      "ASIA1",
+      "EUR4",
+      "NAM4"
+    ]
+  },
+  "review": {
+    "_unstable": {
+      "namespace": {
+        "apiVersion": "v1",
+        "kind": "Namespace",
+        "metadata": {
+          "annotations": {
+            "cnrm.cloud.google.com/project-id": "hightowerlabs"
+          },
+          "creationTimestamp": "2021-03-02T02:58:26Z",
+          "managedFields": [
+            {
+              "apiVersion": "v1",
+              "fieldsType": "FieldsV1",
+              "fieldsV1": {
+                "f:status": {
+                  "f:phase": {}
+                }
+              },
+              "manager": "kube-apiserver",
+              "operation": "Update",
+              "time": "2021-03-02T02:58:26Z"
+            },
+            {
+              "apiVersion": "v1",
+              "fieldsType": "FieldsV1",
+              "fieldsV1": {
+                "f:metadata": {
+                  "f:annotations": {
+                    ".": {},
+                    "f:cnrm.cloud.google.com/project-id": {}
+                  }
+                }
+              },
+              "manager": "kubectl-annotate",
+              "operation": "Update",
+              "time": "2021-03-02T03:00:58Z"
+            }
+          ],
+          "name": "default",
+          "resourceVersion": "2475",
+          "selfLink": "/api/v1/namespaces/default",
+          "uid": "68e499ad-1c6e-4f13-9c89-42c27bbad3db"
+        },
+        "spec": {
+          "finalizers": [
+            "kubernetes"
+          ]
+        },
+        "status": {
+          "phase": "Active"
+        }
+      }
+    },
+    "dryRun": false,
+    "kind": {
+      "group": "storage.cnrm.cloud.google.com",
+      "kind": "StorageBucket",
+      "version": "v1beta1"
+    },
+    "name": "hightowerlabs-kcc-storage-bucket",
+    "namespace": "default",
+    "object": {
+      "apiVersion": "storage.cnrm.cloud.google.com/v1beta1",
+      "kind": "StorageBucket",
+      "metadata": {
+        "annotations": {
+          "cnrm.cloud.google.com/force-destroy": "false",
+          "cnrm.cloud.google.com/management-conflict-prevention-policy": "resource",
+          "cnrm.cloud.google.com/project-id": "hightowerlabs"
+        },
+        "creationTimestamp": "2021-03-08T02:35:10Z",
+        "generation": 1,
+        "managedFields": [
+          {
+            "apiVersion": "storage.cnrm.cloud.google.com/v1beta1",
+            "fieldsType": "FieldsV1",
+            "fieldsV1": {
+              "f:metadata": {
+                "f:annotations": {
+                  ".": {},
+                  "f:cnrm.cloud.google.com/force-destroy": {},
+                  "f:kubectl.kubernetes.io/last-applied-configuration": {}
+                }
+              },
+              "f:spec": {
+                ".": {},
+                "f:lifecycleRule": {},
+                "f:location": {}
+              }
+            },
+            "manager": "kubectl-client-side-apply",
+            "operation": "Update",
+            "time": "2021-03-08T02:35:10Z"
+          }
+        ],
+        "name": "hightowerlabs-kcc-storage-bucket",
+        "namespace": "default",
+        "uid": "645084e4-8cf9-498e-bb45-66b65f666939"
+      },
+      "spec": {
+        "lifecycleRule": [
+          {
+            "action": {
+              "type": "Delete"
+            },
+            "condition": {
+              "age": 7
+            }
+          }
+        ],
+        "location": "US2"
+      }
+    },
+    "oldObject": null,
+    "operation": "CREATE",
+    "options": {
+      "apiVersion": "meta.k8s.io/v1",
+      "fieldManager": "kubectl-client-side-apply",
+      "kind": "CreateOptions"
+    },
+    "requestKind": {
+      "group": "storage.cnrm.cloud.google.com",
+      "kind": "StorageBucket",
+      "version": "v1beta1"
+    },
+    "requestResource": {
+      "group": "storage.cnrm.cloud.google.com",
+      "resource": "storagebuckets",
+      "version": "v1beta1"
+    },
+    "resource": {
+      "group": "storage.cnrm.cloud.google.com",
+      "resource": "storagebuckets",
+      "version": "v1beta1"
+    },
+    "uid": "5f8b98f1-7656-41e5-926e-506ac3ee6022",
+    "userInfo": {
+      "extra": {
+        "iam.gke.io/user-assertion": [
+          ""
+        ],
+        "user-assertion.cloud.google.com": [
+          ""
+        ]
+      },
+      "groups": [
+        "system:authenticated"
+      ],
+      "username": "kelsey.hightower@gmail.com"
+    }
+  }
+}

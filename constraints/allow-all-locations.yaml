@@ -1,0 +1,41 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: StorageBucketAllowedLocations
+metadata:
+  name: allow-all-locations
+spec:
+  match:
+    kinds:
+      - apiGroups: ["storage.cnrm.cloud.google.com"]
+        kinds: ["StorageBucket"]
+  parameters:
+    locations:
+      - "NORTHAMERICA-NORTHEAST1"
+      - "US-CENTRAL1"
+      - "US-EAST1"
+      - "US-EAST4"
+      - "US-WEST1"
+      - "US-WEST2"
+      - "US-WEST3"
+      - "US-WEST4"
+      - "SOUTHAMERICA-EAST1"
+      - "EUROPE-NORTH1"
+      - "EUROPE-WEST1"
+      - "EUROPE-WEST2"
+      - "EUROPE-WEST3"
+      - "EUROPE-WEST4"
+      - "EUROPE-WEST6"
+      - "ASIA-EAST1"
+      - "ASIA-EAST2"
+      - "ASIA-NORTHEAST1"
+      - "ASIA-NORTHEAST2"
+      - "ASIA-NORTHEAST3"
+      - "ASIA-SOUTH1"
+      - "ASIA-SOUTHEAST1"
+      - "ASIA-SOUTHEAST2"
+      - "AUSTRALIA-SOUTHEAST1"
+      - "ASIA"
+      - "EU"
+      - "US"
+      - "ASIA1"
+      - "EUR4"
+      - "NAM4"
