@@ -68,9 +68,9 @@ gatekeeper-controller-manager-5bb5f9b4dd-xpfgr   1/1     Running   0
 
 In this section we will create Gatekeeper policies to limit which GCS [bucket locations](https://cloud.google.com/storage/docs/locations) can be used when creating Storage Bucket resources.
 
-Gatekeeper leverages [constraint templates](https://open-policy-agent.github.io/gatekeeper/website/docs/howto#constraint-templates) to define policies and [constraints](https://open-policy-agent.github.io/gatekeeper/website/docs/howto#constraints) to configure them. While we could jump directly into reviewing and deploying constraint templates and constraints it's important to understand the fundemental workflow for creating policies from scratch.
+Gatekeeper leverages [constraint templates](https://open-policy-agent.github.io/gatekeeper/website/docs/howto#constraint-templates) to define policies and [constraints](https://open-policy-agent.github.io/gatekeeper/website/docs/howto#constraints) to configure them. While we could jump directly into reviewing and deploying constraint templates and constraints it's important to understand the fundamental workflow for creating policies from scratch.
 
-When writing policies it helps to understand the input that policies will use during the validation process. The input for this tutorial will be StorageBucket resource. The following Kubernetes manifiest can be use to create a StorageBucket resource named `example-storage-bucket` in the `US` bucket location:
+When writing policies it helps to understand the input that policies will use during the validation process. The input for this tutorial will be StorageBucket resource. The following Kubernetes manifest can be use to create a StorageBucket resource named `example-storage-bucket` in the `US` bucket location:
 
 ```
 apiVersion: storage.cnrm.cloud.google.com/v1beta1
@@ -83,7 +83,7 @@ spec:
   location: US
 ```
 
-It's important to understand that Gatekeeper doesn't operate on Kubernetes resource object directly. Gatekeeper recieves Kubernetes admission objects and turns them into  the input with a set of parameter define in constraints. This following is an example input object that is made available to your policies:
+It's important to understand that Gatekeeper doesn't operate on Kubernetes resource object directly. Gatekeeper receives Kubernetes admission objects and turns them into  the input with a set of parameter define in constraints. This following is an example input object that is made available to your policies:
 
 ```
 {
@@ -199,7 +199,7 @@ kubectl get storagebuckets
 No resources found in default namespace.
 ```
 
-Create a unqiue `StorageBucket` bucket by appending the current GCP project name:
+Create a unique `StorageBucket` bucket by appending the current GCP project name:
 
 ```
 PROJECT_ID=$(gcloud config get-value project)
